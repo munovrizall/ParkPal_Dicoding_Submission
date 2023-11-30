@@ -22,7 +22,7 @@ class MainScreen extends StatelessWidget {
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           if (constraints.maxWidth <= 600) {
-            return ParkPlaceList();
+            return const ParkPlaceList();
           } else if (constraints.maxWidth <= 1200) {
             return const ParkPlaceGrid(gridCount: 4);
           } else {
@@ -89,7 +89,8 @@ class ParkPlaceGrid extends StatelessWidget {
                         ),
                         Text(
                           place.description,
-                          style: TextStyle(overflow: TextOverflow.ellipsis),
+                          style:
+                              const TextStyle(overflow: TextOverflow.ellipsis),
                         ),
                         const SizedBox(
                           height: 16,
@@ -102,7 +103,11 @@ class ParkPlaceGrid extends StatelessWidget {
                               color: Colors.red,
                             ),
                             const SizedBox(width: 8),
-                            Text(place.location),
+                            Text(
+                              place.location,
+                              style: const TextStyle(
+                                  overflow: TextOverflow.ellipsis),
+                            ),
                           ],
                         ),
                       ],
@@ -113,7 +118,7 @@ class ParkPlaceGrid extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 8),
                   child: Column(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.star,
                         color: Colors.yellow,
                       ),
@@ -187,7 +192,8 @@ class ParkPlaceList extends StatelessWidget {
                           ),
                           Text(
                             place.description,
-                            style: TextStyle(overflow: TextOverflow.ellipsis),
+                            style: const TextStyle(
+                                overflow: TextOverflow.ellipsis),
                           ),
                           const SizedBox(
                             height: 16,
@@ -200,7 +206,13 @@ class ParkPlaceList extends StatelessWidget {
                                 color: Colors.red,
                               ),
                               const SizedBox(width: 8),
-                              Text(place.location),
+                              Text(
+                                place.location,
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
                             ],
                           ),
                         ],
@@ -211,7 +223,7 @@ class ParkPlaceList extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 8),
                     child: Column(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.star,
                           color: Colors.yellow,
                         ),
