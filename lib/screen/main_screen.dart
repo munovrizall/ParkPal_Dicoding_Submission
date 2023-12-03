@@ -95,20 +95,10 @@ class ParkPlaceGrid extends StatelessWidget {
                         const SizedBox(
                           height: 16,
                         ),
-                        Row(
-                          children: [
-                            const Icon(
-                              Icons.location_pin,
-                              size: 16,
-                              color: Colors.red,
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              place.location,
-                              style: const TextStyle(
-                                  overflow: TextOverflow.ellipsis),
-                            ),
-                          ],
+                        Text(
+                          place.location,
+                          style: const TextStyle(
+                              overflow: TextOverflow.ellipsis),
                         ),
                       ],
                     ),
@@ -117,6 +107,7 @@ class ParkPlaceGrid extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 8),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Icon(
                         Icons.star,
@@ -198,22 +189,12 @@ class ParkPlaceList extends StatelessWidget {
                           const SizedBox(
                             height: 16,
                           ),
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.location_pin,
-                                size: 16,
-                                color: Colors.red,
-                              ),
-                              const SizedBox(width: 8),
-                              Text(
-                                place.location,
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ],
+                          Text(
+                            place.location,
+                            style: const TextStyle(
+                              fontSize: 12,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                         ],
                       ),
