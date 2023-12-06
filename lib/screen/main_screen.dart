@@ -21,7 +21,7 @@ class MainScreen extends StatelessWidget {
       ),
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-          if (constraints.maxWidth <= 600) {
+          if (constraints.maxWidth <= 700) {
             return const ParkPlaceList();
           } else if (constraints.maxWidth <= 1200) {
             return const ParkPlaceGrid(gridCount: 4);
@@ -41,87 +41,98 @@ class ParkPlaceGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-      crossAxisCount: 4,
-      crossAxisSpacing: 16,
-      mainAxisSpacing: 16,
-      children: parkPlaceList.map((place) {
-        return InkWell(
-          onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return DetailScreen(
-                place: place,
-              );
-            }));
-          },
-          child: Card(
-            color: Colors.white,
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: SizedBox(
-                    width: 100,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.asset(
-                        place.imageAsset,
-                        fit: BoxFit.cover,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+      child: GridView.count(
+        crossAxisCount: gridCount,
+        crossAxisSpacing: 16,
+        mainAxisSpacing: 16,
+        children: parkPlaceList.map((place) {
+          return InkWell(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return DetailScreen(
+                  place: place,
+                );
+              }));
+            },
+            child: Card(
+              color: Colors.white,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: SizedBox(
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(8),
+                            topRight: Radius.circular(8)),
+                        child: Image.asset(
+                          place.imageAsset,
+                          fit: BoxFit.fitWidth,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          place.name,
-                          style: const TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          place.description,
-                          style:
-                              const TextStyle(overflow: TextOverflow.ellipsis),
-                        ),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        Text(
-                          place.location,
-                          style: const TextStyle(
-                              overflow: TextOverflow.ellipsis),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 8),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  Row(
                     children: [
-                      const Icon(
-                        Icons.star,
-                        color: Colors.yellow,
+                      Expanded(
+                        flex: 2,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                place.name,
+                                style: const TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              Text(
+                                place.description,
+                                style:
+                                    const TextStyle(overflow: TextOverflow.ellipsis),
+                              ),
+                              const SizedBox(
+                                height: 16,
+                              ),
+                              Text(
+                                place.location,
+                                style:
+                                    const TextStyle(
+                                        fontSize: 12,
+                                        overflow: TextOverflow.ellipsis),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
-                      Text(place.rating),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              Icons.star,
+                              color: Colors.yellow,
+                            ),
+                            Text(place.rating),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        );
-      }).toList(),
+          );
+        }).toList(),
+      ),
     );
   }
 }
